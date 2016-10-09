@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "23C025ED69F8226AE267C555B498D6F2905E5360",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "f8a1a5ee-eb99-4727-820f-b2bbd946ba00++4092" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "23C025ED69F8226AE267C555B498D6F2905E5360" : 0,
+    "f8a1a5ee-eb99-4727-820f-b2bbd946ba00++4092" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "74EE1852-E720-4DDB-B542-9444C20FB4DA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "23C025ED69F8226AE267C555B498D6F2905E5360" : "AutoLayoutCellDemo\/",
+    "f8a1a5ee-eb99-4727-820f-b2bbd946ba00++4092" : "AutoLayoutCellDemo\/AutoLayoutCellDemo\/IQKeyBoardManager-%E5%BA%93\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AutoLayoutCellDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AutoLayoutCellDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rasping\/AutoLayoutCellDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "23C025ED69F8226AE267C555B498D6F2905E5360"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/code.taobao.org\/svn\/Living",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "f8a1a5ee-eb99-4727-820f-b2bbd946ba00++4092"
+    }
+  ]
+}

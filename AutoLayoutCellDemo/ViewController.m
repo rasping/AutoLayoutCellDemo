@@ -64,6 +64,13 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 90;
+    [self.tableView layoutIfNeeded];
+    if (self.tableView.contentSize.height <= [UIScreen mainScreen].bounds.size.height - 320) {
+        CGRect frame = self.tableView.frame;
+        frame.size.height = self.tableView.contentSize.height;
+        self.tableView.frame = frame;
+        [self.tableView layoutIfNeeded];
+    }
 }
 
 - (void)textFieldTextDidChange:(NSNotification *)notify
