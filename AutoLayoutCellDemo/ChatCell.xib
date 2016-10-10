@@ -117,7 +117,7 @@
                 <outlet property="messageSelf" destination="eR3-wi-YXe" id="jqr-7D-Hkl"/>
                 <outlet property="timeSelf" destination="B3j-sn-NK0" id="KRq-QG-nJp"/>
             </connections>
-            <point key="canvasLocation" x="264" y="417"/>
+            <point key="canvasLocation" x="264" y="391"/>
         </tableViewCell>
     </objects>
     <resources>
