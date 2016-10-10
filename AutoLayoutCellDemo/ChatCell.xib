@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCellTypeSelf" id="KGk-i7-Jjw" customClass="ChatCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatCellTypeOther" id="KGk-i7-Jjw" customClass="ChatCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -38,7 +38,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="pGI-HO-Hmb" firstAttribute="top" secondItem="osF-0C-wfL" secondAttribute="bottom" constant="14" id="7NO-nT-u6J"/>
                     <constraint firstItem="YPR-qh-C8U" firstAttribute="top" secondItem="osF-0C-wfL" secondAttribute="bottom" constant="8" id="EuC-2q-nj8"/>
@@ -56,14 +55,15 @@
                     <constraint firstItem="osF-0C-wfL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xBz-99-vFG"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="icon" destination="Ocm-ff-7kx" id="2pf-8D-zvL"/>
-                <outlet property="message" destination="eR3-wi-YXe" id="0Kr-Ks-NND"/>
-                <outlet property="time" destination="B3j-sn-NK0" id="TMN-c9-QZS"/>
+                <outlet property="icon" destination="YPR-qh-C8U" id="6G1-tH-8Bo"/>
+                <outlet property="message" destination="not-1v-qgF" id="dBQ-JA-tRV"/>
+                <outlet property="time" destination="osF-0C-wfL" id="Pln-b5-ukH"/>
             </connections>
             <point key="canvasLocation" x="264" y="235"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCellTypeOther" id="tdu-gZ-IoD" customClass="ChatCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatCellTypeSelf" id="tdu-gZ-IoD" customClass="ChatCellSelf">
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tdu-gZ-IoD" id="FYt-kB-xGD">
@@ -112,6 +112,11 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="iconSelf" destination="Ocm-ff-7kx" id="OBR-Ki-CP1"/>
+                <outlet property="messageSelf" destination="eR3-wi-YXe" id="jqr-7D-Hkl"/>
+                <outlet property="timeSelf" destination="B3j-sn-NK0" id="KRq-QG-nJp"/>
+            </connections>
             <point key="canvasLocation" x="264" y="417"/>
         </tableViewCell>
     </objects>

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textFieldItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendItem;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottom;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 - (IBAction)sendBtnClicked:(UIButton *)btn;
 /**
@@ -50,8 +51,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Private
 
+//初始化UI
 - (void)setupUI
 {
     self.textFieldItem.width = self.toolbar.bounds.size.width - self.sendItem.width;
@@ -64,19 +71,25 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 90;
-    [self.tableView layoutIfNeeded];
-    if (self.tableView.contentSize.height <= [UIScreen mainScreen].bounds.size.height - 320) {
-        CGRect frame = self.tableView.frame;
-        frame.size.height = self.tableView.contentSize.height;
-        self.tableView.frame = frame;
-        [self.tableView layoutIfNeeded];
-    }
 }
 
+//textField文字改变通知
 - (void)textFieldTextDidChange:(NSNotification *)notify
 {
     UITextField *textField = notify.object;
     self.sendBtn.enabled = textField.text.length ? YES : NO;
+}
+
+//插入一条消息
+- (void)insertMessage:(ChatModel *)model
+{
+    //将新的消息插入到最后
+    [self.dataArray addObject:model];
+    NSIndexPath *index = [NSIndexPath indexPathForRow:(self.dataArray.count - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationBottom];
+    
+    //让tableView滚动到最低部
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(self.dataArray.count - 1) inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -89,8 +102,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatModel *model = self.dataArray[indexPath.row];
-    ChatCell *cell = [ChatCell cellWithTableView:tableView chatModel:model];
+    ChatCell *cell = nil;
+    if (model.type == ChatTypeOther) {
+        cell = [ChatCell cellWithTableView:tableView chatCellType:ChatCellTypeOther];
+    }else if (model.type == ChatTypeSelf) {
+        cell = [ChatCell cellWithTableView:tableView chatCellType:ChatCellTypeSelf];
+    }
+    cell.model = model;
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"+++++");
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (self.textField.isEditing) {
+        [self.view endEditing:YES];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -111,14 +146,8 @@
     NSString *time             = [formatter stringFromDate:[NSDate date]];
     ChatModel *otherModel      = [ChatModel modelWithIcon:nil time:time message:@"晚上吃什么？" type:ChatTypeOther];
     self.textField.text        = nil;
-    [_dataArray addObject:selfModel];
-    [_dataArray addObject:otherModel];
-    
-    [self.tableView beginUpdates];
-    [self.tableView reloadData];
-    [self.tableView beginUpdates];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataArray.count inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self insertMessage:selfModel];
+    [self performSelector:@selector(insertMessage:) withObject:otherModel afterDelay:0.3];
 }
 
 @end

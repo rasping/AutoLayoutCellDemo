@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  聊天列表cell类型
+ *  聊天消息类型
  */
 typedef NS_ENUM(NSInteger, ChatType) {
     /**

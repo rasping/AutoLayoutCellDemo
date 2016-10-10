@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    IQKeyboardManager *manager=[IQKeyboardManager sharedManager];
+    manager.enable=YES;
+    manager.shouldResignOnTouchOutside=YES;
+    manager.shouldToolbarUsesTextFieldTintColor=YES;
+    manager.enableAutoToolbar=NO;
     
     return YES;
 }

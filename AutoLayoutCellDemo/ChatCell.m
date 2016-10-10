@@ -30,21 +30,21 @@
     // Configure the view for the selected state
 }
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView chatModel:(ChatModel *)model
++ (instancetype)cellWithTableView:(UITableView *)tableView chatCellType:(ChatCellType)type
 {
     static NSString *reuseIdentifier;
     NSInteger index = 0;
-    if (model.type == ChatTypeOther) {
+    if (type == ChatCellTypeOther) {
         reuseIdentifier = @"ChatCellTypeOther";
-    }else if (model.type == ChatTypeSelf) {
+    }else if (type == ChatCellTypeSelf) {
         reuseIdentifier = @"ChatCellTypeSelf";
         index= 1;
     }
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"ChatCell" owner:self options:0][index];
+        cell.backgroundColor = [UIColor clearColor];
     }
-    cell.model = model;
     return cell;
 }
 
@@ -52,8 +52,31 @@
 {
     _model = model;
     
-    self.message.text = model.message;
-    self.time.text    = model.time;
+    if (model.type == ChatTypeOther) {
+        self.time.text    = model.time;
+        self.message.text = model.message;
+    }
+}
+
+@end
+
+@interface ChatCellSelf ()
+@property (weak, nonatomic) IBOutlet UILabel *timeSelf;
+@property (weak, nonatomic) IBOutlet UIImageView *iconSelf;
+@property (weak, nonatomic) IBOutlet UILabel *messageSelf;
+
+@end
+
+@implementation ChatCellSelf
+
+- (void)setModel:(ChatModel *)model
+{
+    [super setModel:model];
+    
+    if (model.type == ChatTypeSelf) {
+        self.timeSelf.text    = model.time;
+        self.messageSelf.text = model.message;
+    }
 }
 
 @end
