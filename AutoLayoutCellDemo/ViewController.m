@@ -148,6 +148,7 @@
     self.textField.text        = nil;
     [self insertMessage:selfModel];
     [self performSelector:@selector(insertMessage:) withObject:otherModel afterDelay:0.3];
+    
 }
 
 @end
